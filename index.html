@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>site</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="assets/css/media-queries.css" rel="stylesheet" type="text/css">
+    <meta name="viewport" content="700, initial-scale=1.0">
+    <meta name="MobileOptimized" content="320">
+    <meta name="HandheldFriendly" content="true">
+
+    <!--JQuerry-->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+            crossorigin="anonymous">
+
+    </script>
+
+    <script defer src="bundle.js"></script><link href="main.css" rel="stylesheet"></head>
+
+<body class="left-sidebar is-preload">
+    <div id="page-wrapper">
+
+        <!-- Header -->
+        <div id="header">
+
+            <!-- Inner -->
+            <div class="inner">
+                <header>
+                    <h1><a id="logo">Новые люди. Новые идеи. Новые горизонты</a></h1>
+                </header>
+            </div>
+
+            <!-- Nav -->
+            <nav id="nav">
+                <ul>
+                    <li><a href="second.html">Новости</a></li>
+                    <li><a href="third.html">Контакты</a></li>
+                    <li><a href="https://vk.com/albums-194507636">Фото</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <!-- Main -->
+        <div class="wrapper style1">
+            <div class="container">
+                <div class="row gtr-200">
+                    <div class="col-4 col-12-mobile" id="sidebar">
+                        <hr class="first" />
+                        <section>
+                            <center>
+                                <br />
+
+                                Name &nbsp;
+                                <input type="text" name="input" class="name" id="name_check"> <br />
+                                Mail &emsp;
+                                <input type="text" name="input" class="mail" id="mail_check"> <br />
+                                Phone &nbsp;
+                                <input type="text" name="input" class="phone" id="phone_check"> <br />
+
+                                <button class="send_info" id="mail_button">Подписаться</button>
+
+                                <script>
+                                    $(document).ready(function () {
+                                        $('button.send_info').on('click', function () {
+
+                                            if ($('#mail_check').val() != '') {
+
+                                                if ($('#phone_check').val() != '') {
+
+                                                    var mail_Value = $('input.mail').val();
+                                                    var phone_Value = $('input.phone').val();
+                                                    var name_Value = $('input.name').val();
+
+                                                    $.ajax({
+                                                        method: "POST",
+                                                        url: "mail.php",
+                                                        data: {
+                                                            mail: mail_Value,
+                                                            phone: phone_Value,
+                                                            name: name_Value
+                                                        }
+                                                        //    input : значение
+                                                    })
+                                                        .done(function () {
+                                                            // alert(msg);
+                                                        });
+
+                                                    $(function () {
+
+                                                        $.get("index.html", function (data) {
+
+                                                            var mail_Value = $('input.mail', val()).html();
+                                                            var phone_Value = $('input.phone', val()).html();
+                                                            var name_Value = $('input.name', val()).html();
+
+                                                            $("#first_table").html(content);
+                                                        });
+
+                                                    });
+
+                                                    $("#ajax_form").submit(e => {
+                                                        e.preventDefault()
+                                                        const element = document.getElementById('first_table') // находите на странице элемент, в который вы хотите вернуть результат
+                                                        const form_data = $(this).serialize()
+                                                        $.ajax({
+                                                            type: "POST",
+                                                            url: "/php/update.php",
+                                                            data: form_data,
+                                                            success: data => element.outerHTML = data // вставляете в этот элемент ответ сервера
+                                                        }); return false
+                                                    })
+
+                                                    $('#first_table').append('<td>' + 'input.mail' + '</td>');
+                                                    $('#first_table').append('<td>' + 'input.mail' + '</td>');
+                                                    $('#first_table').append('<td>' + 'input.phone' + '</td>');
+                                                    $('#first_table').append('<td>' + 'input.mail' + '</td>');
+
+                                                    setInterval(function () {
+                                                        $.ajax({
+                                                            url: "third.php",
+                                                            cache: false,
+                                                            success: function (html) {
+                                                                $("#first_table").html(html);
+                                                            }
+                                                        });
+                                                    }, 1000);
+
+                                                    $('input.mail').val(''); // очистка строки
+                                                    $('input.phone').val('');
+                                                    $('input.name').val('');
+                                                }
+                                            }
+                                        })
+                                    });
+                                </script>
+                            </center>
+                        </section>
+                        <hr />
+
+                        <section>
+                            <center>
+                                <header>
+                                    <h3><a href="https://vk.com/newpeople.vladivostok">Новые Люди | Приморский край</a></h3>
+                                </header>
+                                <p>
+                                    <center>
+                                        Делаем по-новому, искренне, с душой.
+                                    </center>
+                                </p>
+                                <!-- <a class="image featured"><img src="unnamed2.jpg" alt="" /></a> -->
+
+                                <script type="text/javascript" src="https://vk.com/js/api/openapi.js?168"></script>
+
+                                <!-- VK Widget -->
+                                <div id="vk_groups"></div>
+                                <script type="text/javascript">
+                                    VK.Widgets.Group("vk_groups", { mode: 4, wide: 1, height: "550" }, 194507636);
+                                </script>
+                            </center>
+                        </section>
+                        <hr />
+
+                    </div>
+                    <div class="col-8 col-12-mobile imp-mobile" id="content">
+                        <article id="main">
+                            <header>
+                                <h2><a>Наша деятельность</a></h2> <br>
+
+                                <center><h3><a>Заголовок</a></h3></center>
+                                <p>
+                                    Что-то...что-то...что-то...что-то...что-то...что-то...что-то...что-то...что-то
+                                    ...что-то...что-то...что-то...
+                                </p>
+
+                                <center><h3><a>Заголовок</a></h3></center>
+                                <p>
+                                    Что-то...что-то...что-то...что-то...что-то...что-то...что-то...что-то...что-то
+                                    ...что-то...что-то...что-то...
+                                </p>
+
+                                <center><h3><a>Заголовок</a></h3></center>
+                                <p>
+                                    Что-то...что-то...что-то...что-то...что-то...что-то...что-то...что-то...что-то
+                                    ...что-то...что-то...что-то...
+                                </p>
+                            </header>
+
+                            <br>
+
+                            <header>
+                                <h2><a>Есть предложения?</a></h2> <br>
+                                <p>
+                                    Пиши сюда...Пиши сюда...Пиши сюда...Пиши сюда...Пиши сюда...
+                                </p>
+                            </header>
+
+                            <br>
+
+                            <header>
+                                <h2><a>Это еще не все!</a></h2>
+                                <p>
+                                    Что-то...что-то...что-то...что-то...что-то...что-то...что-то...что-то...что-то
+                                    ...что-то...что-то...что-то...
+                                    <h2>
+                                        <a>
+                                            Не забудь поделиться с друзьями!
+                                        </a>
+
+                                        
+                                        <!--<button class="button"><a href="https://newpeople.ru/join">Присоединиться к нам</button>-->
+                                        <button onclick="window.location.href = 'https://newpeople.ru/join';">Присоединиться к нам</button>
+                                        
+
+
+                                    </h2>
+                                </p>
+                            </header>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div id="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+
+                        <!-- Contact -->
+                        <section class="contact">
+                            <ul class="icons">
+                                <li><a href="https://www.instagram.com/newpeople.vladivostok/" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+                                <li><a href="https://vk.com/newpeople.vladivostok" class="icon brands fa-vk"><span class="label">VK</span></a></li>
+                            </ul>
+                        </section>
+
+                        <!-- Copyright  <li>&copy;  </li>  -->
+                        <div class="copyright">
+                            <ul class="menu">
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts   <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.dropotron.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>    -->
+
+    <script src="assets/js/mail_check.js"></script>
+</body>
+</html>
