@@ -1,6 +1,4 @@
-Буквально "какой-то" сайт. Занимался я им давно и теперь для меня некоторые части словно легаси.
-    
-    Используется:
+    Is used:
     
     HTML, CSS, JQuery, PHP, JavaScript, Ajax, WebPack, mysql-5.6.23, Apache 2.4, phpmyadmin.
 
